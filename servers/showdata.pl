@@ -4,8 +4,8 @@ use AnyEvent::Socket;
 use Getopt::Long;
 $|++;
 
-my $port;
-GetOptions('port|p=i' => \$port) and defined $port or die "port not specialized";
+my $port = '8080';
+GetOptions('port|p=i' => \$port);
 
 say 'listening on port:'.$port;
 
@@ -21,3 +21,7 @@ tcp_server '127.0.0.1', $port, sub {
 	};
 };
 $cv->recv;
+
+__END__
+
+# you can use -p or --port to set port
